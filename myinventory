@@ -1,1 +1,1 @@
-localhost ansible_connection=local ansible_user=root ansible_ssh_pass=thinknyx@123
+localhost ansible_connection=ssh ansible_user=root ansible_ssh_pass=thinknyx@123

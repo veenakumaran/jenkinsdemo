@@ -1,7 +1,7 @@
 ---
 - name: This playbook is for webserver setup
   hosts: "all"
-  connection: local
+#  connection: local
   become: yes
   become_method: su
 #  gather_facts: no
