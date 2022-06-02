@@ -1,0 +1,19 @@
+---
+- name: This playbook is for webserver setup
+  hosts: "all"
+
+  tasks:
+  - name: Installing webserver package
+    yum:
+      name: httpd
+      state: present
+
+  - name: Configure web page 
+    copy: 
+      content: "<h1>This playbook has been run with the power of Jenkins and created using Ansible</h1>"
+      dest: /var/www/html/index.html
+
+  - name: Starting web server
+    service:
+      name: httpd
+      state: started
