@@ -1,6 +1,7 @@
 ---
 - name: This playbook is for webserver setup
   hosts: "all"
+  connection: local
 
   tasks:
   - name: Installing webserver package
