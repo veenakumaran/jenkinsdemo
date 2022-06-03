@@ -1,0 +1,43 @@
+---
+- name: This playbook is for Docker Setup on CentOS
+  hosts: "all"
+  become: yes
+  become_method: su
+
+  tasks:
+  - name: Docker pre-req's
+    yum:
+      name:
+        - docker
+        - docker-client
+        - docker-client-latest
+        - docker-common
+        - docker-latest
+        - docker-latest-logrotate
+        - docker-logrotate
+        - docker-engine
+      state: absent
+
+  - name: Installing yun utils package
+    yum:
+      name: yum-utils
+      state: present
+
+  - name: Setting up the repository for Docker package
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+
+  - name: Install Docker packages
+    yum:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-compose-plugin
+      state: present
+
+  - name: Starting Docker
+    service:
+      name: docker
+      state: started
